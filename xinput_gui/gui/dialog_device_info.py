@@ -23,9 +23,10 @@ from typing import TYPE_CHECKING
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from pkg_resources import resource_filename
 
 from ..xinput.devices import Device
+
+from importlib.resources import as_file, files
 
 if TYPE_CHECKING:
     from ..view_controller import ViewController
@@ -49,12 +50,14 @@ class DeviceInfoDialog:
 
     def get_builder(self) -> Gtk.Builder:
         '''Get device info dialog Gtk Builder.'''
+        ref = files('xinput_gui') / 'res/xinput-gui.ui'
+        with as_file(ref) as path:
 
-        builder = Gtk.Builder()
-        builder.add_objects_from_file(
-            resource_filename('xinput_gui', 'res/xinput-gui.ui'),
-            ['dialog_device_info', 'buffer_device_info'])
-        return builder
+            builder = Gtk.Builder()
+            builder.add_objects_from_file(
+                str(path),
+                ['dialog_device_info', 'buffer_device_info'])
+            return builder
 
     def show(self, device: Device) -> None:
         '''Show the device info dialog.

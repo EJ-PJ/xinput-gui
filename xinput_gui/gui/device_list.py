@@ -23,7 +23,7 @@ from typing import TYPE_CHECKING, List
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from pkg_resources import resource_filename
+from importlib.resources import as_file, files
 
 from ..settings import Settings
 from ..xinput.devices import Device, DeviceType
@@ -60,12 +60,14 @@ class DeviceList:
 
     def get_builder(self) -> Gtk.Builder:
         '''Get device list Gtk Builder.'''
+        ref = files('xinput_gui') / 'res/xinput-gui.ui'
+        with as_file(ref) as path:
 
-        builder = Gtk.Builder()
-        builder.add_objects_from_file(
-            resource_filename('xinput_gui', 'res/xinput-gui.ui'),
-            ['grid_device_list', 'store_devices'])
-        return builder
+            builder = Gtk.Builder()
+            builder.add_objects_from_file(
+                str(path),
+                ['grid_device_list', 'store_devices'])
+            return builder
 
     def apply_settings(self) -> None:
         '''Apply current settings.'''

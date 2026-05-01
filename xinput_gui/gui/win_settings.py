@@ -21,9 +21,9 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from pkg_resources import resource_filename
-
 from ..settings import Settings
+
+from importlib.resources import  files, as_file
 
 
 class SettingsWindow:
@@ -50,12 +50,14 @@ class SettingsWindow:
 
     def get_builder(self) -> Gtk.Builder:
         '''Get settings window Gtk Builder.'''
+        ref = files('xinput_gui') / 'res/xinput-gui.ui'
+        with as_file(ref) as path:
 
-        builder = Gtk.Builder()
-        builder.add_objects_from_file(
-            resource_filename('xinput_gui', 'res/xinput-gui.ui'),
-            ['win_settings'])
-        return builder
+            builder = Gtk.Builder()
+            builder.add_objects_from_file(
+                str(path),
+                ['win_settings'])
+            return builder
 
     def show(self) -> None:
         '''Show the settings window.'''

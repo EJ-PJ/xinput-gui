@@ -23,7 +23,8 @@ from typing import TYPE_CHECKING
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from pkg_resources import resource_filename
+
+from importlib.resources import files, as_file
 
 if TYPE_CHECKING:
     from ..view_controller import ViewController
@@ -51,11 +52,14 @@ class CreateMasterDialog:
     def get_builder(self) -> Gtk.Builder:
         '''Get create master device dialog Gtk Builder.'''
 
-        builder = Gtk.Builder()
-        builder.add_objects_from_file(
-            resource_filename('xinput_gui', 'res/xinput-gui.ui'),
-            ['dialog_create_master'])
-        return builder
+        ref = files('xinput_gui') / 'res/xinput-gui.ui'
+        with as_file(ref) as path:
+
+            builder = Gtk.Builder()
+            builder.add_objects_from_file(
+                str(path),
+                ['dialog_create_master'])
+            return builder
 
     def show(self) -> Gtk.ResponseType:
         '''Show the create master device dialog.'''

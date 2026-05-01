@@ -23,8 +23,7 @@ from shutil import copyfile
 import json
 import os
 
-from pkg_resources import resource_filename
-
+from importlib.resources import as_file, files
 
 CONFIG_PATH = Path(os.environ['HOME']).joinpath('.xinput-gui.json')
 
@@ -46,10 +45,11 @@ class Settings:
 
     def load_config(self):
         '''Load config file.'''
+        ref = files('xinput_gui') / 'res/config.json'
+        with as_file(ref) as path:
 
-        # Create config if needed
-        if not CONFIG_PATH.is_file():
-            copyfile(resource_filename('xinput_gui', 'res/config.json'), CONFIG_PATH)
+            if not CONFIG_PATH.is_file():
+                copyfile(path, CONFIG_PATH)
 
         with open(CONFIG_PATH) as config_file:
             self.config = json.load(config_file)

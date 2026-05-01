@@ -21,10 +21,11 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from pkg_resources import require, resource_filename
 
+from importlib.resources import as_file, files
+from importlib.metadata import version
 
-__version__ = require('xinput_gui')[0].version
+__version__ = version('xinput_gui')
 
 
 class AboutDialog:
@@ -44,12 +45,14 @@ class AboutDialog:
 
     def get_builder(self) -> Gtk.Builder:
         '''Get about dialog Gtk Builder.'''
+        ref = files('xinput_gui') / 'res/xinput-gui.ui'
+        with as_file(ref) as path:
 
-        builder = Gtk.Builder()
-        builder.add_objects_from_file(
-            resource_filename('xinput_gui', 'res/xinput-gui.ui'),
-            ['dialog_about'])
-        return builder
+            builder = Gtk.Builder()
+            builder.add_objects_from_file(
+                str(path),
+                ['dialog_about'])
+            return builder
 
     def show(self) -> None:
         '''Show the about dialog.'''

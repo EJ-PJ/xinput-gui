@@ -23,7 +23,7 @@ from typing import TYPE_CHECKING, List
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from pkg_resources import resource_filename
+from importlib.resources import as_file, files
 
 from ..xinput.devices import Device, DeviceType
 
@@ -53,11 +53,14 @@ class ReattachDialog:
     def get_builder(self) -> Gtk.Builder:
         '''Get reattach dialog Gtk Builder.'''
 
-        builder = Gtk.Builder()
-        builder.add_objects_from_file(
-            resource_filename('xinput_gui', 'res/xinput-gui.ui'),
-            ['dialog_reattach', 'store_reattach'])
-        return builder
+        ref = files('xinput_gui') / 'res/xinput-gui.ui'
+        with as_file(ref) as path:
+
+            builder = Gtk.Builder()
+            builder.add_objects_from_file(
+                str(path),
+                ['dialog_reattach', 'store_reattach'])
+            return builder
 
     def show(self, selected_device: Device, devices: List[Device]) -> Gtk.ResponseType:
         '''Show the reattach dialog.
