@@ -26,3 +26,7 @@ def main():
 
     view_controller = ViewController()
     view_controller.start()
+
+
+if __name__ == "__main__":
+    main()
