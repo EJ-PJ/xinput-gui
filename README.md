@@ -12,12 +12,12 @@ xinput-gui depends on Python 3.12+, GTK+ 3.20+, PyGObject, and xinput.
 
 ### Manual install
  * #### uv
-  Install ut whit uv: `uv pip install .`
+  Install it whit uv: `uv pip install .`
  * #### pip
   Install it whit pip: `pip install .`
 
 ### Other installs
-At the moment I dont have any plans to port the installation to other distros or package managers since this branch (or repo) it s just for personal use. But youre totally free to port it or adapt it whatever you like.
+At the moment I dont have any plans to port the installation to other distros or package managers since this branch (or repo) it s just for personal use. But you're totally free to port it or adapt it whatever you like.
 
 ## Usage
 
