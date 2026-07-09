@@ -8,35 +8,16 @@ xinput allows you to edit properties of devices like keyboards, mice, and touchp
 
 ## Installation
 
-xinput-gui depends on Python 3.5+, GTK+ 3.20+, PyGObject, and xinput.
-
-### Arch Linux
-
-Available as a package on the AUR: [xinput-gui](https://aur.archlinux.org/packages/xinput-gui)
-
-Install it with `makepkg` or your preferred AUR helper.
-
-### Gentoo
-
-Available as a Gentoo package thanks to [@filalex77](https://github.com/filalex77): [app-misc/xinput-gui](https://github.com/filalex77/bright/tree/master/app-misc/xinput-gui)
-
-To install it, run the following commands:
-
-```
-eselect-repository enable bright
-emerge --sync
-emerge xinput-gui
-```
-
-### pip
-
-Available on PyPI: [xinput-gui](https://pypi.org/project/xinput-gui/)
-
-Install it with pip: `pip install --user xinput-gui`.
+xinput-gui depends on Python 3.12+, GTK+ 3.20+, PyGObject, and xinput.
 
 ### Manual install
+ * #### uv
+  Install ut whit uv: `uv pip install .`
+ * #### pip
+  Install it whit pip: `pip install .`
 
-Download the [latest release](https://github.com/IvanFon/xinput-gui/releases/latest) or clone this repo and run `./setup.py install --user`.
+### Other installs
+At the moment I dont have any plans to port the installation to other distros or package managers since this branch (or repo) it s just for personal use. But youre totally free to port it or adapt it whatever you like.
 
 ## Usage
 
