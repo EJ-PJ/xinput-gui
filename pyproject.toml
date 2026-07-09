@@ -1,0 +1,37 @@
+[project]
+name = "xinput-gui"
+version = "0.3.2"
+description = "A simple GUI for Xorg's Xinput tool."
+readme = "README.md"
+authors = [
+	{name = "Ivan Fonseca", email = "ivanfon@riseup.net"}
+]
+requires-python = ">=3.12"
+classifiers = [
+ "Development Status :: 4 - Beta",
+ "Environment :: X11 Applications :: GTK",
+ "Intended Audience :: End Users/Desktop",
+ "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+ "Natural Language :: English",
+ "Operating System :: POSIX",
+ "Programming Language :: Python :: 3",
+ "Programming Language :: Python :: 3 :: Only",
+ "Programming Language :: Python :: 3.12",
+ "Topic :: Desktop Environment",
+ "Topic :: Utilities",
+]
+keywords=["'xinput", "keyboard", "mouse", "touchpad"]
+dependencies = ["PyGObject"	]
+license="GPL-3.0-or-later"
+
+[project.scripts]
+xinput-gui = "xinput_gui.__main__:main"
+
+[build-system]
+requires = ["uv_build>=0.11.28,<0.12.0"]
+build-backend = "uv_build"
+
+[project.urls]
+homepage = "https://pypi.org/project/xinput-gui/"
+repository = "https://github.com/IvanFon/xinput-gui"
+documentation = "https://github.com/IvanFon/xinput-gui/tree/master/docs"
