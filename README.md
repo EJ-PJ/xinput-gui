@@ -11,6 +11,7 @@ xinput allows you to edit properties of devices like keyboards, mice, and touchp
 xinput-gui depends on Python 3.12+, GTK+ 3.20+, PyGObject, and xinput.
 
 ### Manual install
+Clone this repository, then use one of the following commands:
  * #### uv
   Install it whit uv: `uv pip install .`
  * #### pip
